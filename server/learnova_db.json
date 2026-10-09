@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "id": "user-demo-1",
+      "email": "alex.rivera@learnova.ai",
+      "passwordHash": "demo123",
+      "name": "Alex Rivera",
+      "role": "Computer Science Student",
+      "subject": "Computer Science",
+      "topic": "DBMS & SQL JOINs",
+      "proficiency": "Beginner",
+      "goal": "Prepare for interviews",
+      "explanationStyle": "Story-based explanations",
+      "sessionDuration": 15,
+      "createdAt": "2026-10-09T10:09:00.658Z",
+      "lastLoginAt": "2026-10-09T10:09:00.659Z",
+      "masteryScore": 65,
+      "streakDays": 3,
+      "totalQuestionsAnswered": 5,
+      "totalCorrectAnswers": 2,
+      "totalSessionsCompleted": 4,
+      "conceptMasteryMap": {
+        "relational-basics": {
+          "conceptId": "relational-basics",
+          "conceptName": "Relational Model & Keys",
+          "questionsAttempted": 1,
+          "correctCount": 1,
+          "accuracy": 100,
+          "masteryScore": 85,
+          "status": "Strong"
+        },
+        "left-right-join": {
+          "conceptId": "left-right-join",
+          "conceptName": "LEFT & RIGHT JOINs",
+          "questionsAttempted": 2,
+          "correctCount": 0,
+          "accuracy": 0,
+          "masteryScore": 35,
+          "status": "Needs Attention"
+        }
+      }
+    },
+    {
+      "id": "user-demo-2",
+      "email": "priya.sharma@learnova.ai",
+      "passwordHash": "demo123",
+      "name": "Priya Sharma",
+      "role": "Data Science Specialist",
+      "subject": "Computer Science",
+      "topic": "Advanced SQL & Indexing",
+      "proficiency": "Intermediate",
+      "goal": "Improve problem-solving",
+      "explanationStyle": "Step-by-step technical explanations",
+      "sessionDuration": 25,
+      "createdAt": "2026-10-09T10:09:00.659Z",
+      "lastLoginAt": "2026-10-09T10:09:00.659Z",
+      "masteryScore": 82,
+      "streakDays": 7,
+      "totalQuestionsAnswered": 18,
+      "totalCorrectAnswers": 15,
+      "totalSessionsCompleted": 9,
+      "conceptMasteryMap": {}
+    },
+    {
+      "id": "user-1791540926555",
+      "email": "pranithagotur4@gmail.com",
+      "passwordHash": "123456",
+      "name": "Pranitha",
+      "role": "Understand fundamentals",
+      "subject": "Computer Science",
+      "topic": "DBMS & SQL JOINs",
+      "proficiency": "Beginner",
+      "goal": "Understand fundamentals",
+      "explanationStyle": "Simple language with real-world examples",
+      "sessionDuration": 15,
+      "createdAt": "2026-10-09T10:15:26.555Z",
+      "lastLoginAt": "2026-10-09T10:15:38.809Z",
+      "masteryScore": 0,
+      "streakDays": 1,
+      "totalQuestionsAnswered": 0,
+      "totalCorrectAnswers": 0,
+      "totalSessionsCompleted": 0,
+      "conceptMasteryMap": {}
+    }
+  ],
+  "logs": []
+}
