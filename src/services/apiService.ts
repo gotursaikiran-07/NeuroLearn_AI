@@ -8,6 +8,30 @@ export interface AuthResult {
   user?: UserAccount & Partial<LearnerProfile>;
 }
 
+export interface YouTubeVideo {
+  id: string;
+  title: string;
+  channelTitle: string;
+  thumbnailUrl?: string;
+}
+
+export interface YouTubeResourcesResult {
+  configured: boolean;
+  items: YouTubeVideo[];
+}
+
+export const searchYouTubeResources = async (query: string): Promise<YouTubeResourcesResult> => {
+  const params = new URLSearchParams({ q: query });
+  const response = await fetch(`${API_BASE_URL}/resources/youtube?${params}`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error('YouTube search is temporarily unavailable');
+  }
+
+  return data;
+};
+
 export const checkDatabaseHealth = async (): Promise<boolean> => {
   try {
     const res = await fetch(`${API_BASE_URL}/health`, { method: 'GET' });

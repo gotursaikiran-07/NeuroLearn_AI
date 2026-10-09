@@ -81,6 +81,17 @@ Learnova AI works out of the box in **Demo Mode**. To enable live Gemini LLM gen
 2. Enter your Gemini API Key (`AIzaSy...`).
 3. The platform will automatically switch from `Expert AI Engine` to `Live Gemini AI`.
 
+### YouTube Learning Resources
+
+The AI Studio can show lesson-related YouTube videos using the YouTube Data API v3. Create an API key in Google Cloud, enable YouTube Data API v3, then start the backend with the key set in its environment. In PowerShell:
+
+```powershell
+$env:YOUTUBE_API_KEY="your-youtube-api-key"
+npm run db:server
+```
+
+Keep this key on the backend and restrict it to the YouTube Data API in Google Cloud. Without a key, the Studio still provides a direct YouTube search link.
+
 ---
 
 ## 📄 License

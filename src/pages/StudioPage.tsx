@@ -13,6 +13,7 @@ import { SAMPLE_LESSONS } from '../data/sampleLessons';
 import type { ExplanationStyle } from '../types/learning';
 import { TextToSpeechButton } from '../components/common/TextToSpeechButton';
 import { AskLearnovaPanel } from '../components/ai/AskLearnovaPanel';
+import { VideoResourcesPanel } from '../components/ai/VideoResourcesPanel';
 
 export const StudioPage: React.FC = () => {
   const navigate = useNavigate();
@@ -262,11 +263,12 @@ export const StudioPage: React.FC = () => {
         </div>
 
         {/* Right Ask Learnova AI Panel (4 cols) */}
-        <div className="lg:col-span-4 h-full sticky top-20">
+        <div className="lg:col-span-4 h-full sticky top-20 space-y-4">
           <AskLearnovaPanel
             currentTopic={profile.topic}
             conceptName="LEFT & RIGHT JOINs"
           />
+          <VideoResourcesPanel topic={profile.topic} lessonTitle={activeLesson.title} />
         </div>
       </div>
     </div>

@@ -122,7 +122,7 @@ const server = http.createServer((req, res) => {
   let body = '';
   req.on('data', chunk => { body += chunk.toString(); });
 
-  req.on('end', () => {
+  req.on('end', async () => {
     let parsedBody = {};
     if (body) {
       try {
@@ -136,6 +136,56 @@ const server = http.createServer((req, res) => {
     if (pathname === '/api/health' && req.method === 'GET') {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ status: 'ok', service: 'Learnova DB Backend API', timestamp: new Date() }));
+      return;
+    }
+
+    if (pathname === '/api/resources/youtube' && req.method === 'GET') {
+      const query = (url.searchParams.get('q') || '').trim().slice(0, 120);
+      if (!query) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, message: 'A search query is required' }));
+        return;
+      }
+
+      if (!process.env.YOUTUBE_API_KEY) {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, configured: false, items: [] }));
+        return;
+      }
+
+      try {
+        const youtubeUrl = new URL('https://www.googleapis.com/youtube/v3/search');
+        youtubeUrl.search = new URLSearchParams({
+          part: 'snippet',
+          type: 'video',
+          maxResults: '5',
+          q: query,
+          key: process.env.YOUTUBE_API_KEY
+        }).toString();
+
+        const youtubeResponse = await fetch(youtubeUrl);
+        if (!youtubeResponse.ok) {
+          res.writeHead(502, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: false, message: 'YouTube search is temporarily unavailable' }));
+          return;
+        }
+
+        const youtubeData = await youtubeResponse.json();
+        const items = (youtubeData.items || [])
+          .filter((item) => item.id?.videoId)
+          .map((item) => ({
+            id: item.id.videoId,
+            title: item.snippet.title,
+            channelTitle: item.snippet.channelTitle,
+            thumbnailUrl: item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url
+          }));
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, configured: true, items }));
+      } catch (error) {
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, message: 'YouTube search is temporarily unavailable' }));
+      }
       return;
     }
 
